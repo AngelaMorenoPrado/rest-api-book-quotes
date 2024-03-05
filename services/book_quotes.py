@@ -5,8 +5,14 @@ from database.database import db
 from bson.json_util import dumps
 
 def get_book_quotes():
+    # Returns up to 25 random quotes
     try:
-        return dumps(db.find({}, {"book_title": 1, "quote": 1, "author": 1, "_id": 0}))
+        pipeline = [
+            {"$sample": {"size": 25}},
+            {"$project": {"book_title": 1, "quote": 1, "author": 1, "_id": 0}}
+        ]
+        
+        return dumps(db.aggregate(pipeline))
     except Exception as e:
         return make_response({'message': str(e)}, 404)
     
