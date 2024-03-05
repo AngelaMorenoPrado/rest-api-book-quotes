@@ -5,7 +5,6 @@ book_quotes = Blueprint('book_quotes', __name__)
 
 @book_quotes.route("/book-quotes", methods=["GET"])
 def get_quotes():
-    quotes = []
     return get_book_quotes()
 
 @book_quotes.route("/book-quotes", methods=["POST"])
