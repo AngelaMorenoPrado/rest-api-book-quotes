@@ -18,7 +18,13 @@ def get_book_quotes():
     
 def get_book_quotes_by_author(author_name):
     try: 
-        return {'message': 'HOLA'}
+        pipeline = [
+            {"$match": {"author": author_name}},
+            {"$sample": {"size": 15}},
+            {"$project": {"book_title": 1, "quote": 1, "author": 1, "_id": 0}}
+        ]
+
+        return dumps(db.aggregate(pipeline))
     except Exception as e:
         return make_response({'message': str(e)}, 404)
     
