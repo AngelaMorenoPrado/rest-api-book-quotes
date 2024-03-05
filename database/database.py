@@ -1,4 +1,5 @@
+import os
 from pymongo import MongoClient
 
-client = MongoClient('localhost', 27017)
+client = MongoClient(os.environ.get('MONGO_HOST'), int(os.environ.get('MONGO_PORT')))
 db = client.books_quotes.quotes
