@@ -16,6 +16,12 @@ def get_book_quotes():
     except Exception as e:
         return make_response({'message': str(e)}, 404)
     
+def get_book_quotes_by_author(author_name):
+    try: 
+        return {'message': 'HOLA'}
+    except Exception as e:
+        return make_response({'message': str(e)}, 404)
+    
 def add_book_quote(quote_data):
     try:
         quotes = Quotes(**quote_data)
