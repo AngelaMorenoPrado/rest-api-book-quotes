@@ -1,4 +1,3 @@
-import os
 from flask import Flask
 from api.book_quotes import book_quotes
 
