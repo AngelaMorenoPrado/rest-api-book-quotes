@@ -28,6 +28,18 @@ def get_book_quotes_by_author(author_name):
     except Exception as e:
         return make_response({'message': str(e)}, 404)
     
+def get_book_quotes_by_title(book_title):
+    try: 
+        pipeline = [
+            {"$match": {"book_title": book_title}},
+            {"$sample": {"size": 15}},
+            {"$project": {"book_title": 1, "quote": 1, "author": 1, "_id": 0}}
+        ]
+
+        return dumps(db.aggregate(pipeline))
+    except Exception as e:
+        return make_response({'message': str(e)}, 404)
+
 def add_book_quote(quote_data):
     try:
         quotes = Quotes(**quote_data)
