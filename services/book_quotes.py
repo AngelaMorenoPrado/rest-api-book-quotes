@@ -12,11 +12,8 @@ def get_book_quotes():
     
 def add_book_quote(quote_data):
     try:
-        book_title = quote_data.get('book_title')
-        quote = quote_data.get('quote')
-        author = quote_data.get('author')
-
-        quotes = Quotes(book_title=book_title, quote=quote, author=author)
+        quotes = Quotes(**quote_data)
+        quotes.validate()
         quotes_dict = quotes.to_mongo().to_dict()
 
         db.insert_one(quotes_dict)
