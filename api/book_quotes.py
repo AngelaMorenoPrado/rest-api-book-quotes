@@ -1,6 +1,5 @@
-from flask import Blueprint, request, make_response
+from flask import Blueprint, request
 from services.book_quotes import get_book_quotes, add_book_quote, get_book_quotes_by_author
-from model.book_quotes import Quotes
 book_quotes = Blueprint('book_quotes', __name__)
 
 @book_quotes.route("/book-quotes", methods=["GET"])
