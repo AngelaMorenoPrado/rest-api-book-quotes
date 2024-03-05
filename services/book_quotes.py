@@ -5,10 +5,10 @@ from database.database import db
 from bson.json_util import dumps
 
 def get_book_quotes():
-    # Returns up to 25 random quotes
+    # Returns up to 15 random quotes
     try:
         pipeline = [
-            {"$sample": {"size": 25}},
+            {"$sample": {"size": 15}},
             {"$project": {"book_title": 1, "quote": 1, "author": 1, "_id": 0}}
         ]
 
